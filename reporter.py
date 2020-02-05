@@ -1,6 +1,8 @@
 
 import os 
 
+from datetime import datetime
+
 #function in order to convert to price
 def to_usd(my_price):
     """
@@ -12,7 +14,7 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-print("GENERATING SALES REPORT FOR MONTH OF OCTOBER 2013...")
+print("GENERATING SALES REPORT FOR...")
 print("")
 print("")
 
@@ -30,10 +32,14 @@ financial_figures.to_dict()
 
 
 #output section
-total_month_sales = financial_figures["unit price"].sum()
+total_month_sales = financial_figures["sales price"].sum()
 total_month_sales = to_usd(total_month_sales)
 
-print("SALES REPORT FOR MONTH OF")
+
+date = financial_figures["date"].min()
+datetime.strptime(date, '%Y-%m-%d')
+
+print("SALES REPORT FOR MONTH OF", date)
 print("")
 print("Total Sales: ", total_month_sales)
 print("")
