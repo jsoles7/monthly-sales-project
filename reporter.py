@@ -1,4 +1,6 @@
 
+import os 
+
 #function in order to convert to price
 def to_usd(my_price):
     """
@@ -20,12 +22,21 @@ print("")
 import pandas as pd
 
 #read in CSV
-csv_filepath = "data/sales-201804.csv"
+csv_filepath = os.path.join(os.path.dirname(__file__), "Data", "sales-201710.csv")
 financial_figures = pd.read_csv(csv_filepath)
 
 #convert CSV to dictionary
 financial_figures.to_dict()
 
-print(financial_figures)
+
+#output section
+total_month_sales = financial_figures["unit price"].sum()
+total_month_sales = to_usd(total_month_sales)
+
+print("SALES REPORT FOR MONTH OF")
+print("")
+print("Total Sales: ", total_month_sales)
+print("")
+
 
 
